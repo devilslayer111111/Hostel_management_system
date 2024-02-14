@@ -3,30 +3,30 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-struct Student {
-string registrationNo;
-string name;
-float cgpa;
-vector<int> preferences;
-int allocatedRoomType;
-Student* next;
-Student(const string& regNo, const string& n, float c, const vector<int>&
-prefs) {
-registrationNo = regNo;
-name = n;
-cgpa = c;
-preferences = prefs;
-allocatedRoomType = -1;
-next = nullptr;
-}
-};class HostelAllocationSystem {
-private:
-Student* head;
-vector<int> roomCount;
+
+class Student {
 public:
-HostelAllocationSystem() {
-head = nullptr;
-}
+    string registrationNo;
+    string name;
+    float cgpa;
+    vector<int> preferences;
+    int allocatedRoomType;
+    Student* next;
+
+    Student(const string& regNo, const string& n, float c, const vector<int>& prefs)
+        : registrationNo(regNo), name(n), cgpa(c), preferences(prefs),
+          allocatedRoomType(-1), next(nullptr) {}
+};
+
+class HostelAllocationSystem {
+private:
+    Student* head;
+    vector<int> roomCount;
+
+public:
+    HostelAllocationSystem() {
+        head = nullptr;
+    }
 void addStudent(const string& regNo, const string& name, float cgpa, const
 vector<int>& preferences) {
 Student* student = new Student(regNo, name, cgpa, preferences);
@@ -66,8 +66,12 @@ return true;
 }
 return false;
 }
-void setRoomCount(const vector<int>& counts) {
-roomCount = counts;}
+
+void setRoomCount(const vector<int>& counts)
+{
+roomCount = counts;
+}
+
 void displayAllocatedRooms() {
 cout << "Allocated rooms:" << endl;
 for (int i = 0; i < roomCount.size(); ++i) {
